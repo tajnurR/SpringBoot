@@ -1,0 +1,60 @@
+<div th:insert="header.html">...</div>
+<div th:insert="sidebar.html">...</div>
+
+
+
+
+
+<main id="main" class="main">
+
+    <!-- Client List -->
+    <div class="col-12">
+        <div class="card recent-sales overflow-auto">
+
+
+            <div class="card-body">
+                <h5 class="card-title"> Client Status </h5>
+
+
+                <table class="table table-bordered datatable">
+
+
+                    <thead>
+                    <tr>
+                        <th scope="col"> ID</th>
+                        <th scope="col"> Client Name</th>
+                        <th scope="col"> Country </th>
+                        <th scope="col"> Working Process  </th>
+                        <th scope="col"> Status </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="cl : ${allClient}">
+                            <a class="row" th:href="@{'/client_profile/'+${cl.cid}}" >
+                            <td th:text="${cl.cid}"></td>
+                            <td th:text="${cl.cName}"></td>
+                            <td th:text="${cl.country.cntName}"></td>
+                            <td th:text="${cl.cGender}"></td>
+                            <td>
+                                <a th:href="@{'/client_profile/'+${cl.cid}}" class="btn btn-warning"> Check Profile  </a>
+                            </td>
+                            </a>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><!-- End Recent Sales -->
+</main><!-- End #main -->
+
+
+
+
+
+
+
+
+
+
+
+<div th:insert="footer.html">...</div>

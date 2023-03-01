@@ -1,0 +1,154 @@
+<div th:insert="header.html">...</div>
+<div th:insert="sidebar.html">...</div>
+
+
+
+<main id="main" class="main">
+
+    <!-- Client Registration Form -->
+    <div class="col-12">
+      <div class="card">
+
+
+        <div class="card-body">
+          <h5 class="card-title" th:if="${cid!=null}"> Update Your Marchendizing Profile </h5>
+          <h5 class="card-title" th:if="${cid==null}"> Register As Client </h5>
+
+          <section class="section">
+            <div class="row">
+              <div class="col-lg-10 offset-1">
+      
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title"> To Get the sample you have to Fillup the Necessary Field </h5>
+      
+                    <!-- Client Necessary Form Elements -->
+                    <form   th:action="@{/save_client_submit}" th:object="${client_all_data}" method="post">
+                      <div class="row mb-3">
+                        <label for="client_id" class="col-sm-3 col-form-label">Client ID</label>
+                        <div class="col-sm-9">
+                          <input th:field="*{cid}" id="client_id" placeholder="USA-2023-07" class="form-control" type="hidden">
+                          <!-- Example = eng-10-23-05 // Engineering Depratment Join in 2023 as 5th Employee -->
+                        </div>
+                      </div>
+      
+                      <div class="row mb-3">
+                        <label for="client_name" class="col-sm-3 col-form-label">Client Name </label>
+                        <div class="col-sm-9">
+                          <input  th:field="*{cName}"  id="client_name" type="text" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Country</label>
+                        <div class="col-sm-9">
+                          <select th:field="*{country}"  class="form-select" aria-label="Default select example">
+                            <option  th:each="vc : ${viewCountry}"  th:value="${vc.cntId}" th:text="${vc.cntName}" > Select Country</option>
+
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="client_phone_no" class="col-sm-3 col-form-label">Phone Number</label>
+                        <div class="col-sm-9">
+                          <input th:field="*{cPhoneNumber}" type="text" id="client_phone_no" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="nid_number" class="col-sm-3 col-form-label">National ID No</label>
+                        <div class="col-sm-9">
+                          <input th:field="*{cNid}" id="nid_number" type="number" class="form-control">
+                        </div>
+                      </div>
+
+                      <fieldset class="row mb-3">
+                        <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
+                        <div class="col-sm-9">
+                          <div class="form-check">
+                            <input th:field="*{cGender}" value="Male" class="form-check-input" type="radio" id="client_male" checked>
+                            <label class="form-check-label" for="client_male">
+                              Male
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input th:field="*{cGender}" value="Female" class="form-check-input" type="radio" id="client_female">
+                            <label class="form-check-label" for="client_female">
+                              Female
+                            </label>
+                          </div>
+
+                        </div>
+                      </fieldset>
+
+                      <div class="row mb-3">
+                        <label for="client_dob" class="col-sm-3 col-form-label">Date Of Birth</label>
+                        <div class="col-sm-9">
+                          <input th:field="*{cDob}" id="client_dob" type="date" class="form-control">
+                        </div>
+                      </div>
+<!--
+                      <div class="row mb-3">
+                        <label for="client_image" class="col-sm-3 col-form-label">Upload Image </label>
+                        <div class="col-sm-9">
+                          <input th:field="*{cProfileImage}" id="client_image" class="form-control" type="file">
+                        </div>
+                      </div>
+ -->
+
+                      <div class="row mb-3">
+                        <label for="client_address" class="col-sm-3 col-form-label">Address</label>
+                        <div class="col-sm-9">
+                          <textarea th:field="*{cAddress}" id="client_address" class="form-control" style="height: 100px"></textarea>
+                        </div>
+                      </div>
+
+                      <!--Google Search by
+                      garments employee department and posts list
+                      
+                      https://textiletutorials.com/careers-in-clothing-and-textile-industry-list/ -->
+
+
+                      <div class="row mb-3">
+                        <label for="inputEmail" class="col-sm-3 col-form-label">Email </label>
+                        <div class="col-sm-9">
+                          <input th:field="*{cEmail}" id="inputEmail" type="email" class="form-control">
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="client_pass_field" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                          <input th:field="*{cPassword}"  id="client_pass_field" type="password" class="form-control">
+                        </div>
+                      </div>
+
+
+                      <div class="row mb-3">
+                        <div class="col-sm-9">
+                          <button th:if="${cid!=null}" type="submit" class="btn btn-primary"> Update My Data </button>
+                          <button th:if="${cid==null}" type="submit" class="btn btn-primary">Add me as Happy Client </button>
+                        </div>
+                      </div>
+      
+                    </form><!-- End General Form Elements -->
+      
+                  </div>
+                </div>
+      
+              </div>
+      
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </div><!-- Client Registration From -->
+
+
+</main><!-- End #main -->
+
+
+
+<div th:insert="footer.html">...</div>
+

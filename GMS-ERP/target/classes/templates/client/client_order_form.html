@@ -1,0 +1,144 @@
+
+<div th:insert="header.html">...</div>
+
+<div th:insert="sidebar.html">...</div>
+
+
+
+
+
+<main id="main" class="main">
+
+    <!-- Client Order Form -->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"> Order For Sample  </h5>
+
+          <section class="section">
+            <div class="row">
+              <div class="col-lg-10 offset-1">
+      
+                <div class="card" >
+                  <div class="card-body">
+                    <h5 class="card-title"> To Get the sample you have to Fillup the Necessary Field </h5>
+      
+                    <!-- Client Necessary Form Elements -->
+                    <form th:action="@{/new_order_reg}" th:object="${clientOrderform}" method="post">
+
+                           <div class="row mb-3">
+                             <label for="coCid" class="col-sm-3 col-form-label">Client ID</label>
+                             <div class="col-sm-9">
+                               <input th:value="${ClientProfile.cid}" id="coCid" name="coCid" hidden type="text" class="form-control" >
+                               <span th:text="${ClientProfile.cid}"> </span>
+                             </div>
+                          </div>
+
+                      <div class="row mb-3">
+                        <label for="coName" class="col-sm-3 col-form-label">Client Name </label>
+                        <div class="col-sm-9">
+                          <input th:value="${ClientProfile.cName}" id="coName" name="coName"  type="text"  class="form-control">
+                        </div>
+                      </div>
+
+                      
+                      <div class="row mb-3">
+                        <legend class="col-form-label col-sm-3 pt-0">Raw Material For Sample</legend>
+                        <div class="col-sm-9">
+
+                          <div class="form-check">
+                            <input th:field="*{coRawMaterials}" name="thread" value="Thread" class="form-check-input" type="checkbox" id="thread_ckb" checked>
+                            <label class="form-check-label" for="thread_ckb">
+                              Thread
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input th:field="*{coRawMaterials}"  value="Fabric"  class="form-check-input" type="checkbox" id="fabric_ckb">
+                            <label class="form-check-label" for="fabric_ckb">
+                              Fabric
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input th:field="*{coRawMaterials}"  value="DYES"   class="form-check-input" type="checkbox" id="dyes_ckb">
+                            <label class="form-check-label" for="dyes_ckb">
+                                DYES
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input th:field="*{coRawMaterials}" value="Chemicals" class="form-check-input" type="checkbox" id="chemicals_ckb">
+                            <label class="form-check-label" for="chemicals_ckb">
+                              Chemicals
+                            </label>
+                          </div>
+
+                        </div>
+                      </div>
+
+<!--                      <div class="row mb-3">-->
+<!--                        <label for="ordar_sample_img" class="col-sm-3 col-form-label">Upload Your Sample File </label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                          <input th:field="*{coRawMaterials}" id="ordar_sample_img" class="form-control" type="file" id="formFile">-->
+<!--                        </div>-->
+<!--                      </div>-->
+
+                      <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Order ID</label>
+                        <div class="col-sm-9">
+                          <input  th:field="*{coid}" type="text" class="form-control" placeholder="Year-Month-OrderNo" disabled>
+                          <!-- Example = eng-10-23-05 // Engineering Depratment Join in 2023 as 5th Employee -->
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label for="orderStatus" class="col-sm-3 col-form-label">Order Status</label>
+                        <div class="col-sm-9">
+                          <input value="OrderPlaced" id="orderStatus" name="orderStatus" type="text" class="form-control">
+                          <!-- Order Placed Means Order -->
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-sm-9">
+                          <button type="submit" class="btn btn-primary"> Confirm My order and Retrun Sample </button>
+                        </div>
+                      </div>
+      
+                    </form><!-- End General Form Elements -->
+      
+                  </div>
+                </div>
+      
+              </div>
+      
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </div><!-- Client Registration From -->
+      
+                  </div>
+                </div>
+      
+              </div>
+      
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </div><!-- Client Registration From -->
+
+
+</main><!-- End #main -->
+
+
+
+
+
+<div th:insert="footer.html">...</div>
+
+

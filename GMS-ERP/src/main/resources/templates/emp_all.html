@@ -1,0 +1,54 @@
+<div th:insert="header.html"></div>
+<div th:insert="sidebar.html"></div>
+
+
+  <main id="main" class="main">
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+
+                <div class="card-body">
+                  <h5 class="card-title"> All Employees Status </h5>
+
+                  <table class="table table-borderless datatable">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Employee Name</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Total Salery</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr th:each="emp : ${emList}">
+                        <th th:text="${emp.em_id}" ></th>
+                        <th th:text="${emp.em_name}"> </th>
+                        <th th:text="${emp.department.dep_name}"></th>
+                        <th th:text="${emp.designation.desgi_title}" ></th>
+                        <th th:text="${emp.designation.saleyGrade.totalSalary}" ></th>
+                        <th> <a th:href="@{'/profile/'+${emp.em_id}}"> View Profile </a> </th>
+<!--                        Done not yet-->
+                      </tr>
+
+
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div><!-- End Recent Sales -->
+
+
+
+
+    
+
+
+
+  
+  </main><!-- End #main -->
+
+<div th:insert="footer.html"></div>

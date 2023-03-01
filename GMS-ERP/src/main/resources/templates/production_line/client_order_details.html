@@ -1,0 +1,158 @@
+<div th:insert="header.html"></div>
+<div th:insert="sidebar.html"></div>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1> Client Order Details </h1>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-10 offset-1">
+
+          <div class="card">
+           
+            <div class="container pb-3 ">
+            <h4  class="p-2"> Order Placer Information </h4>
+            <div class="card-body profile-card pt-4 row">
+              <div class="col-md-7">
+                <h2> Karim Benzema </h2>
+                <p> Client ID : USA-23-17 </p>
+              </div>
+
+              <div class="col-md-3 ">
+                <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle float-end">
+              </div>
+
+            </div>
+
+            <h4> Order Information </h4>
+
+            <div class="row p-1">
+              <div class="col-lg-5 col-md-5 label ">Order ID</div>
+              <div class="col-lg-7 col-md-7"> Sweter-23-05 </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> Order Placed Date </div>
+              <div class="col-lg-6 col-md-6"> 05-Jan-2023</div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> Order Type</div>
+              <div class="col-lg-6 col-md-6"> Sweter </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> Quantity of Product </div>
+              <div class="col-lg-6 col-md-6"> 500 PCS </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> Order On Process </div>
+              <div class="col-lg-6 col-md-6"> 3 orders</div>
+            </div>
+
+
+            <h4 class="pt-3" > Production Requisition From Production Manager </h4>
+
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-5 label ">Fiber </div>
+              <div class="col-lg-6 col-md-7"> Cotton Linen, Wool, Silk, Hair, Triacetate, Nylon, Polyester, Acrylic, Vinal </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> Fabric </div>
+              <div class="col-lg-6 col-md-6"> Aertex, Angora, Braid, Brocade, Chiffon, Canvas, Chambray, Denim, Fleece, Hopsack </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> Chemical </div>
+              <div class="col-lg-6 col-md-6"> Whitening agent, Wetting agent, Fixing agent, Detergent, Silicon, Stiffering agent, Water proofing agent, De-foaming agent, Enzymes, Caustic soda, Soda ash, Acetic acid, Oxalic acid </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> 	Swing Machine </div>
+              <div class="col-lg-6 col-md-6"> 45 Pcs </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> 	Overlock Sewing Machine </div>
+              <div class="col-lg-6 col-md-6"> 10 Pcs </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> Zigzag sewing machine </div>
+              <div class="col-lg-6 col-md-6"> 10 Pcs </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> Button Hole Machine </div>
+              <div class="col-lg-6 col-md-6"> 5 Pcs </div>
+            </div>
+            <div class="row p-1">
+              <div class="col-lg-6 col-md-6 label"> Worker </div>
+              <div class="col-lg-6 col-md-6"> 70 Worker </div>
+            </div>
+
+
+
+          </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-xl-10 offset-1">
+
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview"> Progress Workflow </button>
+                </li>
+
+              </ul>
+              
+              <div class="row">
+              <div class="production_process">
+                <div class="card">
+                    <ul class="progress_bar">
+                        <li>Production Requisition 
+                  <button class="btn btn-primary float-end"> Activate Workflow </button>
+                        </li>
+                        <li>Cutting Process 
+                          <button class="btn btn-primary float-end"> Activate Workflow </button>
+                        </li>
+                        <li>Stiching Process </li> 
+                        <li>Dyeing Process </li> 
+                        <li>Washing Process </li> 
+                        <li>Quality Testing  </li> 
+                        <li>Ironing </li> 
+                        <li>Packaging  </li> 
+                        <li>Ready For Shipment  </li> 
+                    </ul>
+                </div>
+              </div>
+            </div> <!-- End Progress Step -->
+            <script>
+              var p_bar=document.querySelectorAll(".progress_bar li");
+              var p_bar_before=document.querySelectorAll(".progress_bar li::before");
+              var p_bar_after=document.querySelectorAll(".progress_bar li::after");
+
+              p_bar.forEach((all_list)=>{
+                  all_list.onclick=function(event){
+                      if(all_list.classList.contains('active')){
+                          all_list.classList.remove('active'); 
+                      }
+                      else{
+                          all_list.classList.add('active'); 
+                      } 
+                  }  
+              });
+            </script>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+<div th:insert="footer.html"></div>

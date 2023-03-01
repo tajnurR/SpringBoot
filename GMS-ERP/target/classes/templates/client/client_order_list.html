@@ -1,0 +1,48 @@
+<div th:insert="header.html">...</div>
+<div th:insert="sidebar.html">...</div>
+
+
+
+
+
+
+<main id="main" class="main">
+
+    <!-- Client List -->
+    <div class="col-12">
+        <div class="card recent-sales overflow-auto">
+
+            <div class="card-body">
+                <h5 class="card-title"> Order List </h5>
+
+                <table class="table table-bordered datatable">
+
+                    <thead>
+                    <tr>
+                        <th scope="col"> Order ID</th>
+                        <th scope="col"> Name </th>
+                        <th scope="col"> Row Materials </th>
+                        <th scope="col"> Order Status </th>
+                        <th scope="col"> Action </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="co : ${allOrder}">
+
+                            <td th:text="${co.coid}"></td>
+                            <td th:text="${co.coName}"></td>
+                            <td th:text="${co.coRawMaterials}"></td>
+                            <td th:text="${co.orderStatus}"></td>
+                            <td>
+                                <a th:href="@{'/Order_/'+${co.coid}}" class="btn btn-warning"> Update </a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><!-- End Recent Sales -->
+</main><!-- End #main -->
+
+<div th:insert="footer.html">...</div>

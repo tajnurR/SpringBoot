@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title th:text="${title}"></title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link th:href="@{/assets/img/favicon.png}" rel="icon">
+  <link th:href="@{/assets/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link th:href="@{https://fonts.gstatic.com}" rel="preconnect">
+  <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+<!--  <link th:href="@{/assets/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">-->
+<!--  <link th:href="@{/assets/vendor/quill/quill.snow.css}" rel="stylesheet">-->
+<!--  <link th:href="@{/assets/vendor/quill/quill.bubble.css}" rel="stylesheet">-->
+<!--  <link th:href="@{/assets/vendor/remixicon/remixicon.css}" rel="stylesheet">-->
+<!--  <link th:href="@{/assets/vendor/simple-datatables/style.css}" rel="stylesheet">-->
+
+  <!-- Template Main CSS File -->
+  <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+  <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-3.6.3.min.js}"></script>
+<!--  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>-->
+  <script th:src="@{https://unpkg.com/html5-qrcode@2.3.4/html5-qrcode.min.js}"></script>
+
+
+</head>
+
+<body>
+
+<script th:inline="javascript">
+
+  function onScanSuccess(decodedText, decodedResult) {
+    console.log(`Code scanned = ${decodedText}`, decodedResult);
+  }
+
+  var html5QrcodeScanner = new Html5QrcodeScanner(
+          "qr-reader", { fps: 10, qrbox: 250 });
+  html5QrcodeScanner.render(onScanSuccess);
+
+</script>
+
+
+<main id="" class="container">
+
+<!--  <div id="qr-reader" style="width: 600px"></div>-->
+
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+      $('#dpetl').change(function(){
+        // alert($("#cars").val())
+        var stateId = $("#dpetl").val();
+
+        $.ajax({
+          type: 'POST',
+          url: 'http://localhost:8181/designation/'+stateId,
+          data: "json",
+          contentType: "application/json",
+          success: function(result) {
+            var result = JSON.parse(result);
+
+            var s = '';
+            for(var i = 0; i < result.length; i++) {
+
+              s += '<option value="' + result[i].desgi_id + '">' + result[i].desgi_title + '</option>';
+            }
+            $('#desigf').html(s);
+          }
+        });
+      });
+
+    });
+
+
+  </script>
+
+    <div class="pagetitle">
+<!--      <h1> Client Profile</h1>-->
+
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-5">
+
+          <div class="card">
+
+            <div class="container pb-3 text-center">
+
+            <h4 class=" p-3"> Scanner Box </h4>
+            <div id="reader" style="min-height: 300px;"></div>
+            <a href="#" type="button" class="btn btn-primary"> Open Camera </a>
+          </div>
+            <div id="result">Result Here</div>
+          </div>
+
+        </div>
+
+
+<!--        <script type="text/javascript">-->
+<!--          function onScanSuccess(qrCodeMessage) {-->
+<!--            $.ajax({-->
+<!--              type: 'GET',-->
+<!--              url: 'http://localhost:8181/attend/'+qrCodeMessage,-->
+<!--              data: "json",-->
+<!--              contentType: "application/json",-->
+<!--              success: function(result) {-->
+<!--                var result = JSON.parse(result);-->
+
+<!--                var s = '';-->
+<!--                for(var i = 0; i < result.length; i++) {-->
+
+<!--                  // s += '<option value="' + result[i].desgi_id + '">' + result[i].desgi_title + '</option>';-->
+<!--                  s += '<span class="result">'+result[i].hrEmployees().em_name+'</span>';-->
+<!--                }-->
+<!--                $('#spring').html(s);-->
+<!--              }-->
+<!--            });-->
+<!--            document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';-->
+<!--          }-->
+
+<!--          function onScanError(errorMessage) {-->
+<!--            //handle scan error-->
+<!--          }-->
+
+<!--          var html5QrcodeScanner = new Html5QrcodeScanner(-->
+<!--                  "reader", { fps: 10, qrbox: 250 });-->
+<!--          html5QrcodeScanner.render(onScanSuccess, onScanError);-->
+
+<!--        </script>-->
+
+        <div class="col-xl-7">
+
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                </li>
+
+              </ul>
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                  <h5 class="card-title">Employee Information </h5>
+
+
+                  <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                    <img src="assets/img/profile-img.jpg" id="hero-img" alt="Profile" class="rounded-circle">
+                    <h2 id="hero-name"> Karim Benzema </h2>
+
+
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 label">Phone Number </div>
+                    <div id="hero-phone" class="col-lg-8 col-md-8">+880 1749 123456 </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 label">National ID No </div>
+                    <div id="hero-nid" class="col-lg-8 col-md-8">9876 654321 </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 label">Gender </div>
+                    <div class="col-lg-8 col-md-8">Male </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 label">Date Of Birth </div>
+                    <div class="col-lg-8 col-md-8"> 31-Jan-1985 </div>
+                  </div>
+
+                </div>
+
+
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+
+  <div th:insert="footer.html"></div>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<script type="text/javascript" th:src="@{https://code.jquery.com/jquery-3.6.3.min.js}"></script>
+<script th:src="@{https://unpkg.com/html5-qrcode@2.3.4/html5-qrcode.min.js}"></script>
+
+
+<main id="" class="container">
+    <div class="pagetitle">
+              <h1> Client Profile</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="card">
+                    <div class="container pb-3 text-center">
+                        <h4 class=" p-3"> Scanner Box </h4>
+                        <div style="width:400px;" id="sss"></div>
+
+                    </div><br><br>
+                    <h3>Your Employee Id is:</h3><br>
+                    <p id="result"></p>
+<!--                    <p th:text="${hremErorr}"></p>-->
+                </div>
+
+            </div>
+
+            <div class="col-xl-7">
+
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <!-- Bordered Tabs -->
+                        <ul class="nav nav-tabs nav-tabs-bordered">
+
+                            <li class="nav-item">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content pt-2">
+
+                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+                                <h5 class="card-title">Employee Information </h5>
+
+
+
+                            </div>
+
+
+                        </div><!-- End Bordered Tabs -->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+</section>
+</main>
+
+
+
+<script th:inline="javascript" type="text/javascript">
+  function onScanSuccess(qrCodeMessage) {
+      $.ajax({
+          type: 'GET',
+          url: 'http://localhost:8181/attend/'+qrCodeMessage,
+          data: "json",
+          contentType: "application/json",
+          success: function(result) {
+              var result = JSON.parse(result);
+
+              var today = new Date();
+              var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+              var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+              var dateTime = date+' '+time;
+
+              var s = '';
+              for(var i = 0; i < 1; i++) {
+                  // s += '<option value="' + result[i].desgi_id + '">' + result[i].desgi_title + '</option>';
+                  s += `
+                                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center" id="heroname">
+                                    <img src="http://localhost:8181/imsge/${result[i].em_profileImg}" id="hero-img" alt="Profile" class="rounded" width="300px">
+                                    <h2 id="hero-name" ></h2>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label">Name </div>
+                                    <div id="hero-phone" class="col-lg-8 col-md-8">${result[i].em_name}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label"> Department </div>
+                                    <div id="hero-nid" class="col-lg-8 col-md-8">${result[i].department.dep_name}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label">Designation</div>
+                                    <div class="col-lg-8 col-md-8"> ${result[i].designation.desgi_title}</div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 label"> Present Time </div>
+                                    <div class="col-lg-8 col-md-8">${dateTime} </div>
+                                </div>
+
+                                    <div class="row">
+                                    <div class="col-lg-4 col-md-4 label"> Leave Time </div>
+                                    <div class="col-lg-8 col-md-8">-</div>
+                                </div>` ;
+              }
+              $('#profile-overview').html(s);
+          }
+      });
+    document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';
+  }
+
+  function onScanError(errorMessage) {
+    //handle scan error
+  }
+
+  var html5QrcodeScanner = new Html5QrcodeScanner(
+          "sss", { fps: 10, qrbox: 250 });
+  html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+  $(document).ready(function(){
+      $('#result').change(function(){
+
+          alert("ok")
+
+      });
+  });
+</script>
+
+<div th:insert="footer.html"></div>
+</body>
+</html>

@@ -1,0 +1,223 @@
+
+<div th:insert="header.html"></div>
+<div th:insert="sidebar.html"></div>
+
+  <main id="main" class="main">
+        <!-- New Employee Form  -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+
+
+                <div class="card-body">
+                  <h5 class="card-title"> Create New Department </h5>
+
+                  <section class="section">
+                    <div class="row">
+                      <div class="col-lg-10 offset-1">
+              
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">Add Department and Job Designation </h5>
+              
+                            <!-- New Employee Form Elements -->
+                            <form th:action="@{/user/submit-desig}" th:object="${addDesig}" method="post" >
+                              <div class="row mb-3">
+                                <label for="inputTexts" class="col-sm-3 col-form-label">Department Name </label>
+                                <div class="col-sm-9">
+                                  <select th:field="*{department}" id="inputTexts" class="form-control">
+
+                                    <option th:each="option : ${allDept}" th:value="${option.dep_id}" th:text="${option.dep_name}"> Choose Department.. </option>
+                                  </select>
+                                </div>
+                              </div>
+
+<!--                              <div class="row mb-3">-->
+<!--                                <label for="inputText" class="col-sm-3 col-form-label">Department Short Name </label>-->
+<!--                                <div class="col-sm-9">-->
+<!--                                  <input type="text" class="form-control" th:field="*{}">-->
+<!--                                </div>-->
+<!--                              </div>-->
+
+                              <div class="row mb-3">
+                                <label for="inputNumber" class="col-sm-3 col-form-label">Post Designation</label>
+                                <div class="col-sm-9">
+                                  <input type="text" id="inputNumber" class="form-control" th:field="*{desgi_title}">
+                                </div>
+                              </div>
+
+
+
+                              <div class="row mb-3">
+                                <label for="inputTexts" class="col-sm-3 col-form-label">Grade </label>
+                                <div class="col-sm-9">
+                                  <select th:field="*{salaryGrade}" id="inputTexts" class="form-control">
+
+                                    <option th:each="op : ${allGrade}" th:value="${op.sg_id}" th:text="${op.sg_name}">Choose Department.. </option>
+                                  </select>
+                                </div>
+                              </div>
+                              
+                              <div class="row mb-3">
+                                <div class="col-sm-9">
+                                  <button type="submit" class="btn btn-primary">Add Department </button>
+                                </div>
+                              </div>
+              
+                            </form><!-- End General Form Elements -->
+              
+                          </div>
+                        </div>
+              
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">List Of Salary Grade </h5>
+                            <!-- New Salary Grade Form Elements -->
+                                    
+<!--                            <table class="table">-->
+<!--                              <thead>-->
+<!--                                <tr th:each="empadd_dep : ${}">-->
+<!--                                  <th > Short Name </th>-->
+<!--                                  <th> Department </th>-->
+<!--                                  <th> Post Designation </th>-->
+<!--                                  <th> Action </th>-->
+<!--                                </tr>-->
+<!--                              </thead>-->
+<!--                              <tbody>-->
+<!--                                <tr>-->
+<!--                                  <th th:text="${empadd_dep.}">  </th>-->
+<!--                                  <td th:text="${empadd_dep.}"> </td>-->
+<!--                                  <td> HR Admin </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <th> HR </th>-->
+<!--                                  <td> Human Resources </td>-->
+<!--                                  <td> HR Manager </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <th> HR </th>-->
+<!--                                  <td> Human Resources </td>-->
+<!--                                  <td> HR Exicutive </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                -->
+<!--                                <tr>-->
+<!--                                  <th> Prd </th>-->
+<!--                                  <th> Production </th>-->
+<!--                                  <td> Production Manager </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <th> Prd </th>-->
+<!--                                  <th> Production </th>-->
+<!--                                  <td> Production Supervisor </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <th> Prd </th>-->
+<!--                                  <th> Production </th>-->
+<!--                                  <td> Assistant Production Officer </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <th> Prd </th>-->
+<!--                                  <th> Production </th>-->
+<!--                                  <td> Shift Incharge </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <th> mkt </th>-->
+<!--                                  <th> Marketing and Sales </th>-->
+<!--                                  <td> Market Analyst </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <th> mkt </th>-->
+<!--                                  <th> Marketing and Sales </th>-->
+<!--                                  <td> Advertising And Promotion Agent </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <th> DGN </th>-->
+<!--                                  <th> Design Department </th>-->
+<!--                                  <td> Assistant Designer </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                  <th> DGN </th>-->
+<!--                                  <th> Design Department </th>-->
+<!--                                  <td> Sample Maker </td>-->
+<!--                                  <td>-->
+<!--                                    <a class="btn btn-danger">Delete</a>-->
+<!--                                    <a class="btn btn-warning">Update</a>-->
+<!--                                  </td>-->
+<!--                                </tr>-->
+<!--                                -->
+<!--                                -->
+<!--                              </tbody>-->
+<!--                            </table>-->
+                          </div>
+                        </div> <!-- List Card Finish -->
+                        
+              
+
+
+
+
+
+
+                      </div>
+              
+                    </div>
+                  </section>
+              
+
+
+
+                </div>
+
+              </div>
+            </div><!-- End Recent Sales -->
+
+
+
+
+    
+
+
+
+  
+  </main><!-- End #main -->
+
+<div th:insert="footer.html"></div>
